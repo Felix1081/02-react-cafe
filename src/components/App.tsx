@@ -1,21 +1,26 @@
-// src/components/App.tsx
-
-import Product from "./Product";
+import css from "./App.module.css";
+import CafeInfo from "./CafeInfo";
+import VoteOptions from "./VoteOptions";
+import VoteStats from "./VoteSats";
+import { useState } from "react";
+import { Votes, VoteType } from "../types/votes";
 
 export default function App() {
+  const [votes, setVotes] = useState<Votes>({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
+
+  const handleVote = (type: VoteType) => {
+    setVotes();
+  };
+
   return (
-    <>
-      <h1>Best selling</h1>
-      <Product
-        name="Tacos With Lime"
-        imgUrl="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?w=640"
-        price={10.99}
-      />
-      <Product
-        name="Fries and Burger"
-        imgUrl="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?w=640"
-        price={14.29}
-      />
-    </>
+    <div className={css.app}>
+      <CafeInfo />
+      <VoteOptions />
+      <VoteStats />
+    </div>
   );
 }
